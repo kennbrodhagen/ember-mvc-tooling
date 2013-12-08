@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "0.0.0",
+  "authors": [
+    "Kenn Brodhagen <kennbrodhagen@gmail.com>"
+  ],
+  "description": "Ember TodoMVC",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember-mocha-adapter": "~0.1.2"
+  }
+}

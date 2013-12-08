@@ -1,0 +1,12 @@
+--bail
+--check-leaks
+--growl
+--reporter spec
+--require bower_components/jquery/jquery.js
+--require bower_components/handlebards/handlebars.js
+--require bower_components/ember-mocha-adapter/adapter.js
+--require expect.js
+--ui bdd
+--watch
+
+
