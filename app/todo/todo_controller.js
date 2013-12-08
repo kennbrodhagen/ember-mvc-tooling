@@ -1,4 +1,5 @@
-Todos.TodoController = Ember.ObjectController.extend({
+'use strict';
+window.Todos.TodoController = Ember.ObjectController.extend({
     actions: {
         acceptChanges: function() {
             this.set('isEditing', false);
