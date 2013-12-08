@@ -12,7 +12,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "phantomjs": "~1.9.2-5"
+    "phantomjs": "~1.9.2-5",
+    "auto-reload-brunch": "~1.7.1"
   },
   "devDependencies": {
     "javascript-brunch": ">= 1.0 < 1.7",
