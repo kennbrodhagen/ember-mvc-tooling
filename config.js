@@ -47,6 +47,11 @@ exports.config = {
     definition: false,
     wrapper: false
   },
+  plugins: {
+    jshint: {
+      pattern: /^app\/.*\.js$/
+    }
+  },
   server: {
     port: 3333,
     base: '/',

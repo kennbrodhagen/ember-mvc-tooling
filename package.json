@@ -38,6 +38,7 @@
     "mocha": "~1.15.1",
     "karma-mocha": "~0.1.1",
     "karma-expect": "~1.0.0",
-    "karma-sinon": "~1.0.0"
+    "karma-sinon": "~1.0.0",
+    "jshint-brunch": "~1.7.0"
   }
 }
