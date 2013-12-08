@@ -14,10 +14,11 @@ module.exports = function(config) {
             'bower_components/handlebars/handlebars.js',
             'bower_components/ember/ember.js',
             'bower_components/ember-data/ember-data.js',
-            'js/libs/localstorage_adapter.js',
-            'js/application.js',
-            'js/common.spec.js',
-            'js/**/*.js'
+            'vendor/localstorage_adapter.js',
+            'app/application.js',
+            'app/common-test.js',
+            'app/**/*.js',
+            'app/**/*.hbs'
         ],
 
         reporters: ['progress', 'growl'],
