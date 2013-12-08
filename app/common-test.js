@@ -1,3 +1,4 @@
 beforeEach(function() {
-    localStorage.clear();
+	'use strict';
+	window.localStorage.clear();
 });
