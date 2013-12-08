@@ -1,5 +1,8 @@
 # Created by http://gitignore.io
 
+# Brunch
+public/
+
 ### Bower ###
 bower_components
 

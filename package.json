@@ -15,6 +15,12 @@
     "phantomjs": "~1.9.2-5"
   },
   "devDependencies": {
+    "javascript-brunch": ">= 1.0 < 1.7",
+    "coffee-script-brunch": ">= 1.0 < 1.7",
+    "css-brunch": ">= 1.0 < 1.7",
+    "uglify-js-brunch": ">= 1.0 < 1.7",
+    "clean-css-brunch": ">= 1.0 < 1.7",
+    "ember-handlebars-brunch": "git://github.com/icholy/ember-handlebars-brunch.git",
     "karma-script-launcher": "~0.1.0",
     "karma-chrome-launcher": "~0.1.1",
     "karma-html2js-preprocessor": "~0.1.0",
