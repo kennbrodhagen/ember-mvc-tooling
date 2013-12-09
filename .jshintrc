@@ -19,7 +19,7 @@
 	"eqeqeq": true,
 	"esnext": true,
 	"forin": true,
-	"freeze": true,
+//	"freeze": true,
 	"globalstrict": true,
 	"node": true,
 	"immed": true,
