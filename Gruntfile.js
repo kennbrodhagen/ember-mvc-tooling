@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 					require: ['expect.js', 'mocha'],
 					ui: 'bdd'
 				},
-				src: ['test/e2e/**/*.js']
+				src: ['test/e2e/test-helper.js', 'test/e2e/**/*.js']
 			}
 		},
 

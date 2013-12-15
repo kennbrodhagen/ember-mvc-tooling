@@ -1,16 +1,3 @@
-var expect = require('expect.js');
-var test = require('selenium-webdriver/testing');
-var webdriver = require('selenium-webdriver');
-
-after = test.after;
-afterEach = test.afterEach;
-before = test.before;
-beforeEach = test.beforeEach;
-ddescribe = test.ddescribe;
-describe = test.describe;
-iit = test.itt;
-it = test.it;
-
 describe('Main Flow', function() {
 	'use strict';
 
