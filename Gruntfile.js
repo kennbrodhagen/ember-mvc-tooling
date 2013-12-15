@@ -53,6 +53,7 @@ module.exports = function(grunt) {
 					growl: true,
 					reporter: 'spec',
 					require: ['expect.js', 'mocha'],
+					timeout: 10000,
 					ui: 'bdd'
 				},
 				src: ['test/e2e/test-helper.js', 'test/e2e/**/*.js']

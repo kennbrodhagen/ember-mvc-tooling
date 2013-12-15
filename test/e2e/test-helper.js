@@ -1,23 +1,18 @@
-/* jshint unused: false */
 
-// expect assert library
-var expect = require('expect.js');
-
-// Selenium webdriver
-var webdriver = require('selenium-webdriver');
-
-// re-map spec functions to webdriver async versions
-(function() {
+before(function() {
 	'use strict';
 
-	var test = require('selenium-webdriver/testing');
-	after = test.after;
-	afterEach = test.afterEach;
-	before = test.before;
-	beforeEach = test.beforeEach;
-	ddescribe = test.ddescribe;
-	describe = test.describe;
-	iit = test.itt;
-	it = test.it;
-})();
+	// Setup Selenium WebDriver for use in
+	// other test modules
+	var WebDriver = require('selenium-webdriver');
+	this.WebDriver = WebDriver;
+	this.driver = new WebDriver.Builder()
+		.withCapabilities(WebDriver.Capabilities.chrome())
+		.build();
+});
+
+after(function(done) {
+	'use strict';
+	this.driver.quit().then(done);
+});
 

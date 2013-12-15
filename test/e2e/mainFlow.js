@@ -1,23 +1,22 @@
 describe('Main Flow', function() {
 	'use strict';
 
+	var WebDriver;
 	var driver;
-	test.before(function() {
-		driver = new webdriver.Builder()
-			.withCapabilities(webdriver.Capabilities.chrome())
-			.build();
+	var expect = require('expect.js');
+
+	before(function() {
+		WebDriver = this.WebDriver;
+		driver = this.driver;
 	});
 
-	after(function() {
-		driver.quit();
-	});
-
-	it('fails miserably', function() {
+	it('fails miserably', function(done) {
 		driver.get('http://www.google.com');
-    var searchBox = driver.findElement(webdriver.By.name('q'));
+    var searchBox = driver.findElement(WebDriver.By.name('q'));
     searchBox.sendKeys('webdriver');
     searchBox.getAttribute('value').then(function(value) {
       expect(value).to.eql('webdriver');
+			done();
     });
 	});
 });
