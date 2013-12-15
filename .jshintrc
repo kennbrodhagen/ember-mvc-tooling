@@ -1,13 +1,16 @@
 {
 	"globals": {
-		"beforeEach": false,
-		"ddescribe": false,
-		"describe": false,
+		"after": true,
+		"afterEach": true,
+		"before": true,
+		"beforeEach": true,
+		"ddescribe": true,
+		"describe": true,
 		"DS": false,
-		"iit": false,
-		"it": false,
+		"iit": true,
+		"it": true,
     "Ember": false,
-		"expect": false,
+		"expect": true,
 		"Todos": true
   },
 
