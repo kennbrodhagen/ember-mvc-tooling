@@ -64,12 +64,7 @@ module.exports = function(grunt) {
 		watch: {
 			APP_JS: {
 				files: ['app/**/*.js'],
-				tasks: [
-					'jshint:all',
-					'karma:unit',
-					'concat:app',
-					'e2e-tests'
-				]
+				tasks: ['build']
 			},
 
 			E2E_JS: {
@@ -81,7 +76,6 @@ module.exports = function(grunt) {
 			},
 
 			options: {
-				atBegin: true,
 				livereload: true
 			}
 		},
@@ -95,8 +89,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-selenium-launcher');
 
-
-	grunt.registerTask('dev', ['connect', 'watch']);
-	grunt.registerTask('e2e-tests', [ 'mochaTest:e2e' ]);
+	grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e' ]);
+	grunt.registerTask('build', ['jshint:all','karma:unit','concat:app','e2e-tests']);
+	grunt.registerTask('dev', ['connect', 'build', 'watch']);
 };
 
