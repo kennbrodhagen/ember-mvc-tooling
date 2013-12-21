@@ -34,6 +34,9 @@
     "mocha": "~1.15.1",
     "phantomjs": "~1.9.2-5",
     "requirejs": "~2.1.9",
-    "selenium-webdriver": "~2.38.1"
+    "selenium-webdriver": "~2.38.1",
+    "mocha-as-promised": "~2.0.0",
+    "chai-as-promised": "~4.1.0",
+    "chai": "~1.8.1"
   }
 }
