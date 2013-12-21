@@ -1,31 +1,26 @@
+'use strict';
 require('mocha-as-promised')();
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
+chai.should();
+
+var wd = require('wd');
+
+// enables chai assertion chaining
+chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
 before(function() {
-  'use strict';
+  this.browser = wd.promiseChainRemote(process.env.SELENIUM_HUB);
+  this.promiseLog = function() {
+    var args = arguments;
+    return function() { console.log.apply(console, args); };
+  };
 
-  // Setup Selenium WebDriver for use in
-  // other modules
-  var WebDriver = require('selenium-webdriver');
-  var driver = new WebDriver.Builder()
-    .withCapabilities(WebDriver.Capabilities.chrome())
-    .build();
-
-  this.driver = driver;
-  this.WebDriver = WebDriver;
-
-  WebDriver.promise.controlFlow().on('uncaughtException', function(err) {
-    console.log('*** There was an uncaught exception: ' + err);
-    this.driver.quit().then(function() {
-      throw err;
-    });
-  });
+  return this.browser.init({browserName:'chrome'});
 });
 
 after(function() {
-  'use strict';
-  return this.driver.quit();
+  return this.browser.quit();
 });
 
