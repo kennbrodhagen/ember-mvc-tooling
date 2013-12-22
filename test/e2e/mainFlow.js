@@ -15,7 +15,7 @@ describe('A Busy Person visits the Todo Page', function() {
   describe('She Examines the UI and sees it...', function() {
     it('Has a title', function() {
       return browser
-        .elementByTagName('h1')
+        .$('h1')
         .text()
         .should.eventually.become('todos');
     });
@@ -24,7 +24,7 @@ describe('A Busy Person visits the Todo Page', function() {
   describe('She adds a new todo and...', function() {
     before(function() {
       return browser
-        .elementById('new-todo')
+        .$('#new-todo')
         .click()
         .type('item 1')
         .keys(wd.SPECIAL_KEYS.Return);
@@ -32,14 +32,13 @@ describe('A Busy Person visits the Todo Page', function() {
 
     it('sees the list is no longer empty', function() {
       return browser
-        .elementById('todo-list')
-        .elementsByTagName('li').should.eventually.have.length(1);
+        .$$('#todo-list li')
+        .should.eventually.have.length(1);
     });
 
     it('sees it appear in the list.', function() {
       return browser
-        .elementById('todo-list')
-        .elementByTagName('li')
+        .$('#todo-list li')
         .text().should.eventually.become('item 1');
     });
   });
