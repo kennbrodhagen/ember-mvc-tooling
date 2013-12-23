@@ -52,6 +52,7 @@ module.exports = function(grunt) {
           growl: true,
           reporter: 'spec',
           require: ['expect.js', 'mocha'],
+          slow: 500,
           timeout: 10000,
           ui: 'bdd'
         },
@@ -86,7 +87,8 @@ module.exports = function(grunt) {
       },
 
       options: {
-        livereload: true
+        livereload: true,
+        spawn: true
       }
     },
   });
@@ -99,7 +101,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-selenium-launcher');
 
-  grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e' ]);
+  grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e']);
   grunt.registerTask('build', ['jshint:all','karma:unit','concat:app','e2e-tests']);
   grunt.registerTask('dev', ['connect', 'watch']);
 };

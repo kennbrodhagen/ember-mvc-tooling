@@ -13,17 +13,23 @@ wd.addPromiseChainMethod('log', function(message) {
 
 // the $ method takes css selector strings
 // and returns the first matching element.
-wd.addPromiseChainMethod('$', function(selector, timeout) {
+wd.addPromiseChainMethod('$', function(selector /*, timeout */) {
+  return this
+    //.waitForElementByCssSelector(selector, timeout)
+    .elementByCssSelectorIfExists(selector);
+});
+
+wd.addPromiseChainMethod('$wait', function(selector, timeout) {
   return this
     .waitForElementByCssSelector(selector, timeout)
-    .elementByCssSelector(selector);
+    .$(selector);
 });
 
 // the $$ method takes css selector strings
 // and returns all matching elements.
-wd.addPromiseChainMethod('$$', function(selector, timeout) {
+wd.addPromiseChainMethod('$$', function(selector /*, timeout */) {
   return this
-    .waitForElementByCssSelector(selector, timeout)
+    //.waitForElementByCssSelector(selector, timeout)
     .elementsByCssSelector(selector);
 });
 
@@ -32,7 +38,7 @@ chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
 before(function() {
   this.browser = wd.promiseChainRemote(process.env.SELENIUM_HUB);
-  this.promiseLog = function() {
+  this.browser.logPromise = function() {
     var args = Array.prototype.slice.call(arguments);
     return function(resolved) {
       args.push(resolved);
@@ -45,6 +51,6 @@ before(function() {
 });
 
 after(function() {
-  return this.browser.quit();
+  return this.browser.sleep(9000).quit();
 });
 
