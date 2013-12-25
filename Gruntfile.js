@@ -52,8 +52,17 @@ module.exports = function(grunt) {
       all: {
         src: ['Gruntfile.js', 'app/**/*.js', 'test/**/*.js']
       },
+      app: {
+        src: ['app/**/*.js', '!**/*.test.js']
+      },
       e2e: {
         src: ['test/e2e/**/*.js']
+      },
+      grunt: {
+        src: ['Gruntfile.js']
+      },
+      unit: {
+        src: ['app/**/*.test.js']
       },
       options: {
         jshintrc: './.jshintrc'
@@ -84,21 +93,29 @@ module.exports = function(grunt) {
 
     watch: {
       app_js: {
-        files: ['app/**/*.js'],
-        tasks: ['build']
+        files: ['app/**/*.js', '!**/*.test.js'],
+        tasks: ['jshint:app', 'karma:unit', 'concat:app', 'e2e-tests']
+      },
+
+      app_test_js: {
+        files: ['app/**/*.test.js'],
+        tasks: ['jshint:unit', 'karma:unit']
+      },
+
+      assets: {
+        files: ['app/assets/**'],
+        tasks: ['copy:assets', 'e2e-tests']
       },
 
       e2e_js: {
         files: ['test/e2e/**/*.js'],
-        tasks: [
-          'jshint:e2e',
-          'e2e-tests'
-        ]
+        tasks: ['jshint:e2e','e2e-tests']
       },
 
-      html: {
-        files: ['app/**/*.html'],
-        tasks: ['copy:assets', 'e2e-tests']
+      // Watch gruntfile to automatically reload.
+      grunt: {
+        files: ['Gruntfile.js'],
+        tasks: ['jshint:grunt']
       },
 
       // Watch with empty file list to define a single set of tasks

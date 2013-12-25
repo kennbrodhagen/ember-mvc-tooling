@@ -17,7 +17,7 @@ module.exports = function(config) {
 			'bower_components/ember-data/ember-data.js',
 			'vendor/localstorage_adapter.js',
 			'app/application.js',
-			'app/common-test.js',
+			'app/common.test.js',
 			'app/**/*.js',
 			'app/**/*.hbs'
 		],
