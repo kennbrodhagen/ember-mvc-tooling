@@ -107,6 +107,11 @@ module.exports = function(grunt) {
         tasks: ['copy:assets', 'e2e-tests']
       },
 
+      bower: {
+        files: ['bower_components/**'],
+        tasks: ['bower_concat:all', 'e2e-tests']
+      },
+
       e2e_js: {
         files: ['test/e2e/**/*.js'],
         tasks: ['jshint:e2e','e2e-tests']
