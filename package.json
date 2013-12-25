@@ -17,6 +17,7 @@
     "chai-as-promised": "~4.1.0",
     "expect.js": "~0.2.0",
     "grunt": "~0.4.2",
+    "grunt-bower-concat": "~0.2.2",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-copy": "~0.5.0",
@@ -36,7 +37,6 @@
     "mocha": "~1.15.1",
     "mocha-as-promised": "~2.0.0",
     "phantomjs": "~1.9.2-5",
-    "wd": "~0.2.7",
-    "grunt-bower-concat": "~0.2.2"
+    "wd": "~0.2.7"
   }
 }
