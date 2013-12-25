@@ -7,6 +7,3 @@ Todos.Store = DS.Store.extend({
 	adapter: 'Todos.ApplicationAdapter'
 });
 
-/*
-Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
-*/
