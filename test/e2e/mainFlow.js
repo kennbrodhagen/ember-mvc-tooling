@@ -7,12 +7,11 @@ describe('A Busy Person visits the Todo Page', function() {
   var browser;
 
   var activeFilter = function() {
-    //return browser.$('a[href="#/active"]');
     return browser.$('#active-filter a');
   };
 
   var allFilter = function() {
-    return browser.$('a[href="#/"]');
+    return browser.$('#all-filter a');
   };
 
   var addTodo = function(todoName) {
@@ -35,7 +34,7 @@ describe('A Busy Person visits the Todo Page', function() {
   };
 
   var completedFilter = function() {
-    return browser.$('a[href="#/completed"]');
+    return browser.$('#completed-filter a');
   };
 
   // Need to delete via injected call to jquery on the page

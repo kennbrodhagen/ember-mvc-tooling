@@ -40,13 +40,13 @@
             <strong>{{remaining}}</strong> {{inflection}} left
           </span>
           <ul id="filters">
-            <li>
+            <li id="all-filter">
               {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
             </li>
             <li id="active-filter">
               {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
             </li>
-            <li>
+            <li id="completed-filter">
               {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
             </li>
           </ul>
