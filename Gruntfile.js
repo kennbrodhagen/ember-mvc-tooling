@@ -72,7 +72,7 @@ module.exports = function(grunt) {
           growl: true,
           reporter: 'spec',
           require: ['expect.js', 'mocha'],
-          slow: 1000,
+          slow: 5000,
           timeout: 10000,
           ui: 'bdd'
         },
