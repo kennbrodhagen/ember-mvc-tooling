@@ -1,10 +1,15 @@
-/* jshint maxstatements: false */
+/* jshint maxstatements: false, camelcase: false */
 module.exports = function(grunt) {
   'use strict';
 
   //process.env.SELENIUM_LAUNCHER_PORT = 4444;
 
   grunt.initConfig({
+    bower_concat: {
+      all: {
+        dest: 'public/js/bower.js'
+      }
+    },
     concat: {
       app: {
         src: [
@@ -16,6 +21,12 @@ module.exports = function(grunt) {
           'app/todo/todo_edit_view.js'
         ],
         dest: 'public/js/app.js'
+      },
+      vendor: {
+        src: [
+          'vendor/localstorage_adapter.js'
+        ],
+        dest: 'public/js/vendor.js'
       }
     },
 
@@ -25,6 +36,15 @@ module.exports = function(grunt) {
           port: 3000,
           base: './public'
         }
+      }
+    },
+
+    copy: {
+      assets: {
+        cwd: 'app/assets/',
+        dest: 'public/',
+        expand: true,
+        src: '**'
       }
     },
 
@@ -63,12 +83,12 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     watch: {
-      APP_JS: {
+      app_js: {
         files: ['app/**/*.js'],
         tasks: ['build']
       },
 
-      E2E_JS: {
+      e2e_js: {
         files: ['test/e2e/**/*.js'],
         tasks: [
           'jshint:e2e',
@@ -76,9 +96,9 @@ module.exports = function(grunt) {
         ]
       },
 
-      HTML: {
+      html: {
         files: ['app/**/*.html'],
-        tasks: ['e2e-tests']
+        tasks: ['copy:assets', 'e2e-tests']
       },
 
       // Watch with empty file list to define a single set of tasks
@@ -98,8 +118,10 @@ module.exports = function(grunt) {
     },
   });
 
+  grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
@@ -107,7 +129,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-selenium-launcher');
 
   grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e']);
-  grunt.registerTask('build', ['jshint:all','karma:unit','concat:app','e2e-tests']);
+  grunt.registerTask('build',
+    ['jshint:all','karma:unit', 'copy:assets','bower_concat:all',
+    'concat:vendor', 'concat:app','e2e-tests']);
   grunt.registerTask('dev', ['connect', 'watch']);
 };
 

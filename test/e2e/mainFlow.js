@@ -7,7 +7,8 @@ describe('A Busy Person visits the Todo Page', function() {
   var browser;
 
   var activeFilter = function() {
-    return browser.$('a[href="#/active"]');
+    //return browser.$('a[href="#/active"]');
+    return browser.$('#active-filter a');
   };
 
   var allFilter = function() {

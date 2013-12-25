@@ -2,7 +2,7 @@
   <head>
       <meta charset="utf-8">
       <title>Ember.js * TodoMVC</title>
-      <link rel="stylesheet" href="css/app.css"/>
+      <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
     <script type="text/x-handlebars" data-template-name="todos/index">
@@ -43,7 +43,7 @@
             <li>
               {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
             </li>
-            <li>
+            <li id="active-filter">
               {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
             </li>
             <li>
@@ -64,6 +64,7 @@
       </footer>
     </script>
 
+    <script src="js/bower.js"></script>
     <script src="js/vendor.js"></script>
     <script src="js/app.js"></script>
   </body>
