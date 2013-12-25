@@ -52,7 +52,7 @@ module.exports = function(grunt) {
           growl: true,
           reporter: 'spec',
           require: ['expect.js', 'mocha'],
-          slow: 500,
+          slow: 1000,
           timeout: 10000,
           ui: 'bdd'
         },
@@ -74,6 +74,11 @@ module.exports = function(grunt) {
           'jshint:e2e',
           'e2e-tests'
         ]
+      },
+
+      HTML: {
+        files: ['app/**/*.html'],
+        tasks: ['e2e-tests']
       },
 
       // Watch with empty file list to define a single set of tasks

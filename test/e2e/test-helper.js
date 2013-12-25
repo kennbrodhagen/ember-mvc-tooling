@@ -51,6 +51,6 @@ before(function() {
 });
 
 after(function() {
-  return this.browser.sleep(9000).quit();
+  return this.browser.quit();
 });
 
