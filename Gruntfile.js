@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         src: ['Gruntfile.js']
       },
       unit: {
-        src: ['app/**/*.test.js']
+        src: ['test/karma.conf.js', 'app/**/*.test.js']
       },
       options: {
         jshintrc: './.jshintrc'
@@ -98,7 +98,7 @@ module.exports = function(grunt) {
       },
 
       app_test_js: {
-        files: ['app/**/*.test.js'],
+        files: ['app/**/*.test.js', 'test/karma.conf.js'],
         tasks: ['jshint:unit', 'karma:unit']
       },
 
