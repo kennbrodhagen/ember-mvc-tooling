@@ -156,16 +156,7 @@ module.exports = function(grunt) {
     },
   });
 
-  grunt.loadNpmTasks('grunt-bower-concat');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-ember-templates');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-selenium-launcher');
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e']);
   grunt.registerTask('build',
