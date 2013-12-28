@@ -48,6 +48,17 @@ module.exports = function(grunt) {
       }
     },
 
+    emberTemplates: {
+      compile: {
+        options: {
+          templateBasePath: /app\//
+        },
+        files: {
+          'public/js/templates.js': 'app/**/*.hbs'
+        }
+      }
+    },
+
     jshint: {
       all: {
         src: ['Gruntfile.js', 'app/**/*.js', 'test/**/*.js']
@@ -123,6 +134,11 @@ module.exports = function(grunt) {
         tasks: ['jshint:grunt']
       },
 
+      templates: {
+        files: ['app/**/*.hbs'],
+        tasks: ['emberTemplates']
+      },
+
       // Watch with empty file list to define a single set of tasks
       // to run at startup, prevents mulitple runs of overlapping tasks.
       STARTUP: {
@@ -146,6 +162,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-selenium-launcher');
@@ -153,7 +170,7 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e']);
   grunt.registerTask('build',
     ['jshint:all','karma:unit', 'copy:assets','bower_concat:all',
-    'concat:vendor', 'concat:app','e2e-tests']);
+    'concat:vendor', 'concat:app', 'emberTemplates', 'e2e-tests']);
   grunt.registerTask('dev', ['connect', 'watch']);
 };
 
