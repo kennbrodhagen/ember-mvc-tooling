@@ -17,11 +17,8 @@ module.exports = function(config) {
     frameworks: ['browserify', 'expect', 'mocha', 'sinon-chai'],
 
     files: [
-      'bower_components/jquery/jquery.js',
-      'bower_components/handlebars/handlebars.js',
-      'bower_components/ember/ember.js',
-      'bower_components/ember-data/ember-data.js',
-      'vendor/localstorage_adapter.js',
+      'public/js/bower.js',
+      'public/js/vendor.js',
       'app/application.js',
       'app/common.test.js',
       'app/**/*.js',

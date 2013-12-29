@@ -117,7 +117,7 @@ module.exports = function(grunt) {
         tasks: ['jshint:app', 'karma:unit', 'browserify', 'e2e-tests']
       },
 
-      app_test_js: {
+      unit_js: {
         files: ['app/**/*.test.js', 'test/karma.conf.js'],
         tasks: ['jshint:unit', 'karma:unit']
       },
@@ -129,7 +129,7 @@ module.exports = function(grunt) {
 
       bower: {
         files: ['bower_components/**'],
-        tasks: ['bower_concat:all', 'e2e-tests']
+        tasks: ['bower_concat:all', 'karma:unit', 'e2e-tests']
       },
 
       e2e_js: {
