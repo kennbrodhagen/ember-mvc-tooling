@@ -2,13 +2,19 @@ module.exports = function(config) {
   'use strict';
   config.set({
     basePath: '../',
+
+    browserify: {
+      extendions: ['js'],
+      debug: true
+    },
+
     client: {
       mocha: {
         ui: 'bdd'
       }
     },
 
-    frameworks: ['expect', 'mocha', 'sinon-chai'],
+    frameworks: ['browserify', 'expect', 'mocha', 'sinon-chai'],
 
     files: [
       'bower_components/jquery/jquery.js',
@@ -32,6 +38,7 @@ module.exports = function(config) {
     reportSlowerThan: 500,
 
     plugins: [
+      'karma-browserify',
       'karma-ember-preprocessor',
       'karma-expect',
       'karma-growl',
@@ -41,6 +48,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
+      'app/**/*.js' : 'browserify',
       '**/*.hbs': 'ember'
     }
   });

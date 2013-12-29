@@ -1,44 +1,49 @@
-'use strict';
-Todos.Router.map(function() {
-  this.resource('todos', {path: '/'}, function() {
-    this.route('active');
-    this.route('completed');
+module.exports = function(opts) {
+  'use strict';
+  var Todos = opts.App;
+  var Ember = opts.Ember;
+
+  Todos.Router.map(function() {
+    this.resource('todos', {path: '/'}, function() {
+      this.route('active');
+      this.route('completed');
+    });
   });
-});
 
-Todos.TodosRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.find('todo');
-  }
-});
+  Todos.TodosRoute = Ember.Route.extend({
+    model: function() {
+      return this.store.find('todo');
+    }
+  });
 
-Todos.TodosIndexRoute = Ember.Route.extend({
-  model: function() {
-    return this.modelFor('todos');
-  }
-});
+  Todos.TodosIndexRoute = Ember.Route.extend({
+    model: function() {
+      return this.modelFor('todos');
+    }
+  });
 
-Todos.TodosActiveRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.filter('todo', function(todo) {
-      return !todo.get('isCompleted');
-    });
-  },
+  Todos.TodosActiveRoute = Ember.Route.extend({
+    model: function() {
+      return this.store.filter('todo', function(todo) {
+        return !todo.get('isCompleted');
+      });
+    },
 
-  renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
-  }
-});
+    renderTemplate: function(controller) {
+      this.render('todos/index', {controller: controller});
+    }
+  });
 
-Todos.TodosCompletedRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.filter('todo', function(todo) {
-      return todo.get('isCompleted');
-    });
-  },
+  Todos.TodosCompletedRoute = Ember.Route.extend({
+    model: function() {
+      return this.store.filter('todo', function(todo) {
+        return todo.get('isCompleted');
+      });
+    },
 
-  renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
-  }
-});
+    renderTemplate: function(controller) {
+      this.render('todos/index', {controller: controller});
+    }
+  });
 
+};

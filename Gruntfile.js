@@ -10,7 +10,15 @@ module.exports = function(grunt) {
         dest: 'public/js/bower.js'
       }
     },
+    browserify: {
+      public: {
+        files: {
+          'public/js/app.js': ['app/application.js']
+        }
+      }
+    },
     concat: {
+      /*
       app: {
         src: [
           'app/application.js',
@@ -22,6 +30,7 @@ module.exports = function(grunt) {
         ],
         dest: 'public/js/app.js'
       },
+      */
       vendor: {
         src: [
           'vendor/localstorage_adapter.js'
@@ -105,7 +114,7 @@ module.exports = function(grunt) {
     watch: {
       app_js: {
         files: ['app/**/*.js', '!**/*.test.js'],
-        tasks: ['jshint:app', 'karma:unit', 'concat:app', 'e2e-tests']
+        tasks: ['jshint:app', 'karma:unit', 'browserify', 'e2e-tests']
       },
 
       app_test_js: {
@@ -161,7 +170,7 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e']);
   grunt.registerTask('build',
     ['jshint:all','karma:unit', 'copy:assets','bower_concat:all',
-    'concat:vendor', 'concat:app', 'emberTemplates', 'e2e-tests']);
+    'concat:vendor', 'emberTemplates', 'browserify', 'e2e-tests']);
   grunt.registerTask('dev', ['connect', 'watch']);
 };
 

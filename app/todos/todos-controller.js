@@ -1,55 +1,60 @@
-'use strict';
-Todos.TodosController = Ember.ArrayController.extend({
-  allAreDone: function(key, value) {
-    if (value === undefined) {
-      return !!this.get('length') && this.everyBy('isCompleted', true);
-    } else {
-      this.setEach('isCompleted', value);
-      this.invoke('save');
-      return value;
-    }
-  }.property('@each.isCompleted'),
+module.exports = function(opts) {
+  'use strict';
+  var Todos = opts.App;
+  var Ember = opts.Ember;
 
-  actions: {
-    clearCompleted: function() {
-      var completed = this.filterBy('isCompleted', true);
-      completed.invoke('deleteRecord');
-      completed.invoke('save');
+  Todos.TodosController = Ember.ArrayController.extend({
+    allAreDone: function(key, value) {
+      if (value === undefined) {
+        return !!this.get('length') && this.everyBy('isCompleted', true);
+      } else {
+        this.setEach('isCompleted', value);
+        this.invoke('save');
+        return value;
+      }
+    }.property('@each.isCompleted'),
+
+    actions: {
+      clearCompleted: function() {
+        var completed = this.filterBy('isCompleted', true);
+        completed.invoke('deleteRecord');
+        completed.invoke('save');
+      },
+
+      createTodo: function() {
+        // Get the todo title by the "New Todo" text field
+        var title = this.get('newTitle');
+        if (!title.trim()) return;
+
+        // Create new todo model
+        var todo = this.store.createRecord('todo', {
+          title: title,
+          isCompleted: false
+        });
+
+        // Clear the "New Todo" text field
+        this.set('newTitle', '');
+
+        // Save the new model
+        todo.save();
+      }
     },
 
-    createTodo: function() {
-      // Get the todo title by the "New Todo" text field
-      var title = this.get('newTitle');
-      if (!title.trim()) return;
+    completed: function() {
+      return this.filterBy('isCompleted', true).get('length');
+    }.property('@each.isCompleted'),
 
-      // Create new todo model
-      var todo = this.store.createRecord('todo', {
-        title: title,
-        isCompleted: false
-      });
+    hasCompleted: function() {
+      return this.get('completed') > 0;
+    }.property('completed'),
 
-      // Clear the "New Todo" text field
-      this.set('newTitle', '');
+    inflection: function() {
+      var remaining = this.get('remaining');
+      return remaining === 1 ? 'item' : 'items';
+    }.property('remaining'),
 
-      // Save the new model
-      todo.save();
-    }
-  },
-
-  completed: function() {
-    return this.filterBy('isCompleted', true).get('length');
-  }.property('@each.isCompleted'),
-
-  hasCompleted: function() {
-    return this.get('completed') > 0;
-  }.property('completed'),
-
-  inflection: function() {
-    var remaining = this.get('remaining');
-    return remaining === 1 ? 'item' : 'items';
-  }.property('remaining'),
-
-  remaining: function() {
-    return this.filterBy('isCompleted', false).get('length');
-  }.property('@each.isCompleted')
-});
+    remaining: function() {
+      return this.filterBy('isCompleted', false).get('length');
+    }.property('@each.isCompleted')
+  });
+};
