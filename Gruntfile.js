@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      public: ['public']
+      public: ['public/**/*']
     },
 
     concat: {
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
           atBegin: true
         },
         files: [],
-        tasks: ['make:all']
+        tasks: ['clean:public', 'make:all']
       },
 
       options: {
