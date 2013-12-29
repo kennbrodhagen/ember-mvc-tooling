@@ -10,6 +10,7 @@ module.exports = function(grunt) {
         dest: 'public/js/bower.js'
       }
     },
+
     browserify: {
       public: {
         files: {
@@ -17,20 +18,12 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    clean: {
+      public: ['public']
+    },
+
     concat: {
-      /*
-      app: {
-        src: [
-          'app/application.js',
-          'app/router.js',
-          'app/todo/todo.js',
-          'app/todo/todo-controller.js',
-          'app/todos/todos-controller.js',
-          'app/todo/todo-edit-view.js'
-        ],
-        dest: 'public/js/app.js'
-      },
-      */
       vendor: {
         src: [
           'vendor/localstorage_adapter.js'
@@ -127,7 +120,7 @@ module.exports = function(grunt) {
         tasks: ['build:assets', 'test:e2e']
       },
 
-      bower: {
+      vendor: {
         files: ['bower_components/**'],
         tasks: ['build:vendor', 'test:all']
       },
