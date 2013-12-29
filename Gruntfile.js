@@ -112,40 +112,40 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     watch: {
-      app_js: {
+      app: {
         files: ['app/**/*.js', '!**/*.test.js'],
-        tasks: ['jshint:app', 'karma:unit', 'browserify', 'e2e-tests']
+        tasks: ['build:app', 'test:all']
       },
 
-      unit_js: {
+      unit: {
         files: ['app/**/*.test.js', 'test/karma.conf.js'],
-        tasks: ['jshint:unit', 'karma:unit']
+        tasks: ['build:unit', 'test:unit']
       },
 
       assets: {
         files: ['app/assets/**'],
-        tasks: ['copy:assets', 'e2e-tests']
+        tasks: ['build:assets', 'test:e2e']
       },
 
       bower: {
         files: ['bower_components/**'],
-        tasks: ['bower_concat:all', 'karma:unit', 'e2e-tests']
+        tasks: ['build:vendor', 'test:all']
       },
 
-      e2e_js: {
+      e2e: {
         files: ['test/e2e/**/*.js'],
-        tasks: ['jshint:e2e','e2e-tests']
+        tasks: ['build:e2e','test:e2e']
       },
 
       // Watch gruntfile to automatically reload.
       grunt: {
         files: ['Gruntfile.js'],
-        tasks: ['jshint:grunt']
+        tasks: ['build:grunt']
       },
 
       templates: {
         files: ['app/**/*.hbs'],
-        tasks: ['emberTemplates']
+        tasks: ['build:templates', 'test:all']
       },
 
       // Watch with empty file list to define a single set of tasks
@@ -155,7 +155,7 @@ module.exports = function(grunt) {
           atBegin: true
         },
         files: [],
-        tasks: ['build']
+        tasks: ['make:all']
       },
 
       options: {
@@ -167,10 +167,31 @@ module.exports = function(grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('e2e-tests', [ 'selenium-launch', 'mochaTest:e2e']);
-  grunt.registerTask('build',
-    ['jshint:all','karma:unit', 'copy:assets','bower_concat:all',
-    'concat:vendor', 'emberTemplates', 'browserify', 'e2e-tests']);
+  grunt.registerTask('build:app', ['jshint:app', 'browserify']);
+  grunt.registerTask('build:assets', ['copy:assets']);
+  grunt.registerTask('build:e2e', ['jshint:e2e']);
+  grunt.registerTask('build:grunt', ['jshint:grunt']);
+  grunt.registerTask('build:templates', ['emberTemplates']);
+  grunt.registerTask('build:unit', ['jshint:unit']);
+  grunt.registerTask('build:vendor', ['bower_concat:all', 'concat:vendor']);
+  grunt.registerTask('build:all',
+    ['build:grunt', 'build:app', 'build:templates', 'build:assets', 'build:vendor',
+     'build:e2e', 'build:unit']);
+
+  grunt.registerTask('test:e2e', ['selenium-launch', 'mochaTest:e2e']);
+  grunt.registerTask('test:unit', ['karma:unit']);
+  grunt.registerTask('test:all',
+    ['test:unit', 'test:e2e']);
+
+  grunt.registerTask('make:unit',
+    ['build:unit', 'test:unit']);
+  grunt.registerTask('make:e2e',
+    ['build:e2e', 'test:e2e']);
+  grunt.registerTask('make:all',
+    ['build:all', 'test:all']);
+
   grunt.registerTask('dev', ['connect', 'watch']);
+
+
 };
 
