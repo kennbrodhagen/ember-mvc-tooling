@@ -16,9 +16,9 @@ module.exports = function(grunt) {
           'app/application.js',
           'app/router.js',
           'app/todo/todo.js',
-          'app/todo/todo_controller.js',
-          'app/todos/todos_controller.js',
-          'app/todo/todo_edit_view.js'
+          'app/todo/todo-controller.js',
+          'app/todos/todos-controller.js',
+          'app/todo/todo-edit-view.js'
         ],
         dest: 'public/js/app.js'
       },
