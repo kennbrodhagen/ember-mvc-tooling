@@ -14,15 +14,14 @@ module.exports = function(config) {
       }
     },
 
-    frameworks: ['browserify', 'expect', 'mocha', 'sinon-chai'],
+    frameworks: ['browserify', 'mocha', 'sinon-chai'],
 
     files: [
       'public/js/bower.js',
       'public/js/vendor.js',
       'app/application.js',
       'app/common.test.js',
-      'app/**/*.js',
-      'app/**/*.hbs'
+      'app/**/*.js'
     ],
 
     reporters: ['progress', 'growl'],
@@ -36,8 +35,6 @@ module.exports = function(config) {
 
     plugins: [
       'karma-browserify',
-      'karma-ember-preprocessor',
-      'karma-expect',
       'karma-growl',
       'karma-mocha',
       'karma-phantomjs-launcher',
@@ -45,8 +42,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'app/**/*.js' : 'browserify',
-      '**/*.hbs': 'ember'
+      'app/**/*.js' : 'browserify'
     }
   });
 };

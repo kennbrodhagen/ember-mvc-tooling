@@ -19,7 +19,7 @@ describe('Routes', function() {
     });
 
     it('exists', function() {
-      expect(Todos.TodosRoute).to.be.ok();
+      expect(Todos.TodosRoute).to.be.ok;
     });
 
     it('returns a model for todo', function() {
@@ -36,7 +36,7 @@ describe('Routes', function() {
     });
 
     it('exists', function() {
-      expect(Todos.TodosIndexRoute).to.be.ok();
+      expect(Todos.TodosIndexRoute).to.be.ok;
     });
 
     it('returns a model for todos', function() {
@@ -53,7 +53,7 @@ describe('Routes', function() {
     });
 
     it('exists', function() {
-      expect(Todos.TodosActiveRoute).to.be.ok();
+      expect(Todos.TodosActiveRoute).to.be.ok;
     });
   });
 });
